@@ -1,0 +1,8 @@
+*.class
+.idea
+target/
+
+# sbt plugin generated files
+native/
+
+*.DS_Store
