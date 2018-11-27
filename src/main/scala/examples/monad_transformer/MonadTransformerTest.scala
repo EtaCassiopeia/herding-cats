@@ -3,9 +3,13 @@ package examples.monad_transformer
 import scala.concurrent.Future
 import cats.data.OptionT
 import cats.implicits._
+
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.language.higherKinds
 
 object MonadTransformerTest extends App {
+  //Monad transformers are data structures that wrap an underlying value and provide a monadic effect.
+
 //The context we’re comprehending over must stay the same
 
   //nested contexts
@@ -50,7 +54,6 @@ object MonadTransformerTest extends App {
   val result2
     : Future[Option[String]] = ot.value // Future(Some("Hello Jane Doe"))
 
-
   //the |> operator, which applies the function on the right to the value on the left
 
   /*
@@ -67,8 +70,6 @@ object MonadTransformerTest extends App {
          e <- 10   |> lift
 } yield e * (a * b) / (c * d)
    */
-
-
 
   //|> is often called the thrush operator because of its uncanny resemblance to the cute bird. Those who do not like symbolic operators can use the alias .into.
 

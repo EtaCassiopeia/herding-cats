@@ -6,7 +6,9 @@ import cats.implicits._
 import cats.syntax._
 import examples._
 
-import scala.collection.immutable
+import scala.concurrent.{Await, Future}
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 
 object FunctorApp extends App {
   val list = List("one", "two")
@@ -39,5 +41,14 @@ object FunctorApp extends App {
   Applicative[Option]
     .map2(Some("mohsen"), Some("zainalpour"))(Person.apply)
     .print()
+
+  //Functor composition
+  val result: Future[List[String]] = Future.successful(list)
+  Await
+    .result(result.map(_.map(s => s"new $s")), 10 seconds)
+    .print() //nested maps
+
+  val futureListF = Functor[Future].compose(Functor[List]) //F[A], F[B] => F[A[B]]
+  Await.result(futureListF.map(result)(s => s"new $s"), 10 seconds).print()
 
 }

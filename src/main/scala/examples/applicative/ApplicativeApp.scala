@@ -1,10 +1,7 @@
 package examples.applicative
 import cats._
 import cats.implicits._
-import cats.syntax._
 import examples._
-
-import scala.collection.immutable
 
 object ApplicativeApp extends App {
   //Then applicative functors; a pretty cool thing that makes monadic-style operations parallelizable, or, rather, independent.
