@@ -2,7 +2,6 @@ package examples.freemonad
 
 import cats.free.Free
 
-
 //Create an ADT representing your grammar
 sealed trait KVStoreA[A]
 case class Put[T](key: String, value: T) extends KVStoreA[Unit]

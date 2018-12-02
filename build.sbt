@@ -1,6 +1,8 @@
-val catsVersion = "1.0.1"
+val catsVersion = "1.5.0"
 val catsCore = "org.typelevel" %% "cats-core" % catsVersion
 val catsFree = "org.typelevel" %% "cats-free" % catsVersion
+val catsEffect = "org.typelevel" %% "cats-effect" % "1.0.0"
+val alleyCats = "org.typelevel" %% "alleycats-core" % catsVersion
 val catsMtl = "org.typelevel" %% "cats-mtl-core" % "0.2.1"
 
 val simulacrum = "com.github.mpilquist" %% "simulacrum" % "0.11.0"
@@ -18,6 +20,9 @@ val scalacheck = "org.scalacheck" %% "scalacheck" % "1.12.4"
 val scalazCore = "org.scalaz" %% "scalaz-core" % "7.2.26"
 val scalazConcurrent = "org.scalaz" %% "scalaz-concurrent" % "7.2.26"
 
+val http4s = "org.http4s"
+val https4sV =  "0.16.6"
+
 //scalacOptions += "-Ypartial-unification"
 
 lazy val root = (project in file(".")).settings(
@@ -28,13 +33,25 @@ lazy val root = (project in file(".")).settings(
     catsCore,
     catsFree,
     catsMtl,
+    catsEffect,
+    alleyCats,
 //      simulacrum,
 //      specs2Core % Test, specs2Scalacheck % Test, scalacheck % Test,
     scalazCore,
     scalazConcurrent,
     macroParadise,
     kindProjector,
-    resetAllAttrs
+    resetAllAttrs,
+    http4s %% "http4s-core" % https4sV,
+    http4s %% "http4s-dsl" % https4sV,
+    http4s %% "http4s-blaze-server" % https4sV,
+    http4s %% "http4s-circe" % https4sV,
+    "io.circe" %% "circe-core" % "0.10.1",
+    "io.circe" %% "circe-parser" % "0.10.1",
+    "io.circe" %% "circe-generic" % "0.10.1",
+    "io.circe" %% "circe-generic" % "0.10.1",
+    "org.slf4j" % "slf4j-api" % "1.7.21",
+    "ch.qos.logback" % "logback-classic" % "1.1.7"
   ),
   scalacOptions ++= Seq(
     "-deprecation",
